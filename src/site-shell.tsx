@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ArrowRight, Cookie, Menu, Phone, X } from "lucide-react";
-import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { content, type Lang } from "./content";
 
 type SiteContextValue = { lang: Lang; setLang: (lang: Lang) => void; t: (typeof content)[Lang] };
@@ -58,12 +58,6 @@ export function SiteShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMenuOpen(false);
     window.scrollTo({ top: 0, behavior: "auto" });
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.1, rootMargin: "0px 0px -50px" },
-    );
-    const frame = requestAnimationFrame(() => document.querySelectorAll(".reveal").forEach((el) => observer.observe(el)));
-    return () => { cancelAnimationFrame(frame); observer.disconnect(); };
   }, [pathname, lang]);
 
   const setLang = (next: Lang) => { setLanguage(next); setMenuOpen(false); };
@@ -107,5 +101,26 @@ export function SiteShell({ children }: { children: ReactNode }) {
 }
 
 export function Reveal({ children, className = "" }: { children: ReactNode; className?: string }) {
-  return <div className={`reveal ${className}`}>{children}</div>;
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || typeof IntersectionObserver === "undefined") return;
+
+    // Observe on mount, including content mounted after a lazy route resolves.
+    // Visibility never depends on the observer or animation completing.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          element.classList.add("is-visible");
+          observer.disconnect();
+        }
+      },
+      { threshold: 0, rootMargin: "0px 0px 50px" },
+    );
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={ref} className={`reveal ${className}`}>{children}</div>;
 }
