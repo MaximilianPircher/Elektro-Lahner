@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext, HeadContent, Scripts } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
+import { SiteShell } from "../site-shell";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -20,6 +21,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   shellComponent: ({ children }: { children: ReactNode }) => (
     <html lang="de"><head><HeadContent /></head><body>{children}<Scripts /></body></html>
   ),
-  component: () => <QueryClientProvider client={Route.useRouteContext().queryClient}><Outlet /></QueryClientProvider>,
+  component: () => <QueryClientProvider client={Route.useRouteContext().queryClient}><SiteShell><Outlet /></SiteShell></QueryClientProvider>,
   notFoundComponent: () => <main className="error-page"><p>404</p><h1>Diese Seite wurde nicht gefunden.</h1><Link to="/">Zur Startseite</Link></main>,
 });
