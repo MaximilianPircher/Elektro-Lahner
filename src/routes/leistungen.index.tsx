@@ -26,6 +26,12 @@ const icons = [
   SpeakerHigh,
 ];
 
+// Fixed rhythm, so eight cards do not read as eight white boxes.
+const surfaces: Record<number, string> = {
+  1: "service-overview-card--signal",
+  4: "service-overview-card--ink",
+};
+
 function Services() {
   const { lang, t } = useSite();
   const local = <T,>(de: T, it: T, en: T) => ({ de, it, en })[lang];
@@ -34,6 +40,9 @@ function Services() {
   return (
     <main className="inner-page">
       <section className="page-hero page-pad">
+        <div className="page-watermark" aria-hidden="true">
+          <TreeStructure weight="thin" />
+        </div>
         <Reveal>
           <span className="kicker">{t.services.kicker}</span>
           <h1>{t.services.title}</h1>
@@ -52,7 +61,7 @@ function Services() {
             return (
               <Item as="div" key={service.slug}>
                 <Link
-                  className="service-overview-card"
+                  className={`service-overview-card ${surfaces[index] ?? ""}`}
                   to="/leistungen/$service"
                   params={{ service: service.slug }}
                   {...spotlight}

@@ -20,6 +20,9 @@ function Contact() {
   return (
     <main className="inner-page">
       <section className="page-hero page-pad contact-hero">
+        <div className="page-watermark" aria-hidden="true">
+          <MapPin weight="thin" />
+        </div>
         <Reveal>
           <span className="kicker">{t.contact.kicker}</span>
           <h1>

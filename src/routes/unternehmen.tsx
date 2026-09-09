@@ -51,6 +51,9 @@ function Company() {
   return (
     <main className="inner-page">
       <section className="page-hero page-pad">
+        <div className="page-watermark" aria-hidden="true">
+          <Compass weight="thin" />
+        </div>
         <Reveal>
           <span className="kicker">{t.company.kicker}</span>
           <h1>
@@ -105,8 +108,8 @@ function Company() {
 
       <section className="page-pad" style={{ paddingBottom: "var(--sect)" }}>
         <Stagger className="value-grid" step={0.08}>
-          {values.map(([Icon, title, text]) => (
-            <Item className="value-card" key={title}>
+          {values.map(([Icon, title, text], index) => (
+            <Item className={`value-card ${index === 1 ? "value-card--signal" : ""}`} key={title}>
               <Icon size={30} weight="light" />
               <h2>{title}</h2>
               <p>{text}</p>

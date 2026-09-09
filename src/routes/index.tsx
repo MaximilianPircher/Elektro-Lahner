@@ -9,6 +9,7 @@ import {
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
+import { DayProfile } from "../components/day-profile";
 import { KnxBus } from "../components/knx-bus";
 import { referenceNames } from "../content";
 import { useSite } from "../site-shell";
@@ -117,20 +118,38 @@ function Home() {
         </div>
       </section>
 
-      {/* Figures first, because they are what a prospective client weighs. */}
-      <section className="factbar">
-        <div className="page-pad">
-          <Stagger className="factbar-grid" step={0.09}>
-            {facts.map((fact) => (
-              <Item className="fact" key={fact.label}>
-                <strong className="mono">
-                  <Counter value={fact.value} locale={t.htmlLang} />
-                  <i>{fact.unit}</i>
-                </strong>
-                <span>{fact.label}</span>
-              </Item>
-            ))}
-          </Stagger>
+      {/* The day profile carries the argument for pairing photovoltaics with
+          automation, with the figures as readings beside it. Sitting directly
+          under the hero keeps the dark surface continuous. */}
+      <section className="telemetry on-ink">
+        <div className="page-pad telemetry-grid">
+          <Reveal className="telemetry-copy">
+            <h2>{t.profile.title}</h2>
+            <p className="lead">{t.profile.text}</p>
+            <Stagger className="readouts" step={0.09}>
+              {facts.map((fact) => (
+                <Item className="readout" key={fact.label} y={14}>
+                  <strong className="mono">
+                    <Counter value={fact.value} locale={t.htmlLang} />
+                    <i>{fact.unit}</i>
+                  </strong>
+                  <span>{fact.label}</span>
+                </Item>
+              ))}
+            </Stagger>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <DayProfile
+              labels={{
+                draw: t.profile.draw,
+                generation: t.profile.generation,
+                selfUse: t.profile.selfUse,
+                axis: t.profile.axis,
+                note: t.profile.note,
+              }}
+            />
+          </Reveal>
         </div>
       </section>
 

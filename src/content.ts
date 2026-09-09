@@ -95,6 +95,15 @@ type Copy = {
     cookiesText: string;
     updated: string;
   };
+  profile: {
+    title: string;
+    text: string;
+    axis: string;
+    draw: string;
+    generation: string;
+    selfUse: string;
+    note: string;
+  };
   cookie: {
     title: string;
     text: string;
@@ -371,6 +380,15 @@ export const content: Record<Lang, Copy> = {
         "Diese Website verwendet derzeit keine Analyse-, Marketing- oder Profiling-Cookies. Gespeichert werden nur technisch notwendige Einstellungen für Sprache und Cookie-Hinweis. Sie können die Auswahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.",
       updated: "Stand: September 2026",
     },
+    profile: {
+      title: "Ein Gebäude verbraucht nicht dann, wenn die Sonne scheint.",
+      text: "Der Ertrag vom Dach hat mittags seine Spitze, der Verbrauch morgens und abends. Gebäudeautomation verschiebt Lasten in die Deckungsfläche, und genau dieser Anteil muss nicht eingekauft werden.",
+      axis: "Leistung (relativ)",
+      draw: "Verbrauch",
+      generation: "PV-Ertrag",
+      selfUse: "Eigenverbrauch",
+      note: "Schematischer Tagesverlauf zur Veranschaulichung, keine Messwerte einer konkreten Anlage.",
+    },
     cookie: {
       title: "Ihre Privatsphäre",
       text: "Wir verwenden nur technisch notwendige Einstellungen, um Ihre Sprachauswahl und Cookie-Entscheidung zu speichern. Analyse- oder Marketing-Cookies sind derzeit nicht aktiv.",
@@ -638,6 +656,15 @@ export const content: Record<Lang, Copy> = {
         "Il sito non utilizza attualmente cookie di analisi, marketing o profilazione. Salva soltanto le preferenze tecniche per lingua e avviso cookie. La scelta può essere modificata dal footer.",
       updated: "Aggiornato: settembre 2026",
     },
+    profile: {
+      title: "Un edificio non consuma quando splende il sole.",
+      text: "La resa del tetto ha il picco a mezzogiorno, i consumi la mattina e la sera. L'automazione sposta i carichi nell'area di sovrapposizione, ed è proprio quella quota che non va acquistata.",
+      axis: "Potenza (relativa)",
+      draw: "Consumo",
+      generation: "Resa FV",
+      selfUse: "Autoconsumo",
+      note: "Andamento giornaliero schematico a scopo illustrativo, non sono misure di un impianto reale.",
+    },
     cookie: {
       title: "La vostra privacy",
       text: "Utilizziamo soltanto impostazioni tecniche per memorizzare lingua e scelta cookie. Non sono attivi cookie di analisi o marketing.",
@@ -901,6 +928,15 @@ export const content: Record<Lang, Copy> = {
       cookiesText:
         "The website currently uses no analytics, marketing or profiling cookies. It stores only technical preferences for language and the cookie notice. You can change the choice from the footer.",
       updated: "Updated: September 2026",
+    },
+    profile: {
+      title: "A building does not draw power when the sun is out.",
+      text: "The roof peaks at midday while the building draws in the morning and the evening. Automation shifts loads into the overlap, and that share never has to be bought.",
+      axis: "Power (relative)",
+      draw: "Consumption",
+      generation: "PV output",
+      selfUse: "Self-consumption",
+      note: "Schematic day profile for illustration, not measurements from a specific installation.",
     },
     cookie: {
       title: "Your privacy",

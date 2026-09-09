@@ -22,6 +22,9 @@ function References() {
   return (
     <main className="inner-page">
       <section className="page-hero page-pad">
+        <div className="page-watermark" aria-hidden="true">
+          <Buildings weight="thin" />
+        </div>
         <Reveal>
           <span className="kicker">{t.references.kicker}</span>
           <h1>{t.references.title}</h1>
