@@ -9,9 +9,8 @@ import {
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
-import { SegmentMeter } from "../components/segment-meter";
 import { KnxBus } from "../components/knx-bus";
-import { ProjectBars } from "../components/project-bars";
+import { RegionMap } from "../components/region-map";
 import { marqueeNames } from "../projects";
 import { useSite } from "../site-shell";
 import {
@@ -139,41 +138,21 @@ function Home() {
           <Reveal className="telemetry-copy">
             <h2>{t.matrix.title}</h2>
             <p className="lead">{t.matrix.text}</p>
-            <div className="readouts">
-              {meters.map((meter, index) => (
-                <SegmentMeter
-                  key={meter.key}
-                  value={meter.value}
-                  {...(meter.unit ? { unit: meter.unit } : {})}
-                  label={meter.label}
-                  segments={meter.segments}
-                  scaleNote={meter.scaleNote}
-                  delay={index * 0.12}
-                  formatted={<Counter value={meter.counter} locale={t.htmlLang} />}
-                />
+            <dl className="figures">
+              {meters.map((meter) => (
+                <div key={meter.key}>
+                  <dt className="mono">
+                    <Counter value={meter.counter} locale={t.htmlLang} />
+                    {meter.unit ? <i>{meter.unit}</i> : null}
+                  </dt>
+                  <dd>{meter.label}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <ProjectBars
-              labels={{
-                install: local(
-                  "Elektroinstallation",
-                  "Impianto elettrico",
-                  "Electrical installation",
-                ),
-                light: local("Beleuchtung", "Illuminazione", "Lighting"),
-                knx: "KNX",
-                pv: local("Photovoltaik", "Fotovoltaico", "Photovoltaics"),
-                fire: local("Brandmeldeanlage", "Rilevazione incendi", "Fire detection"),
-                security: local("Alarm & Video", "Allarme e video", "Alarm & video"),
-              }}
-              ofLabel={(count, total) =>
-                local(`${count} von ${total}`, `${count} su ${total}`, `${count} of ${total}`)
-              }
-            />
-            <p className="bars-note">{t.matrix.note}</p>
+            <RegionMap title={t.matrix.title} caption={t.matrix.note} />
           </Reveal>
         </div>
       </section>

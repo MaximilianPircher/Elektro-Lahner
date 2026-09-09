@@ -1216,53 +1216,88 @@ footer {
   margin-top: 18px;
 }
 
-/* --- how often each trade appears across the documented projects ---------- */
-.bars {
+/* --- plain figures: the number is the point, no legend to decode ---------- */
+.figures {
   display: grid;
-  gap: clamp(14px, 1.8vw, 22px);
+  gap: 0;
+  margin: clamp(26px, 3.4vw, 40px) 0 0;
+  border-top: 1px solid var(--line-ink);
+}
+.figures > div {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: clamp(14px, 1.7vw, 20px) 0;
+  border-bottom: 1px solid var(--line-ink);
+}
+.figures dt {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  min-width: 5.5ch;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
+  font-weight: 440;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: var(--on-ink);
+}
+.figures dt i {
+  font-style: normal;
+  font-size: 0.46em;
+  font-weight: 520;
+  color: var(--yellow);
+}
+.figures dd {
   margin: 0;
-  padding: clamp(20px, 2.4vw, 32px) clamp(18px, 2.2vw, 30px);
+  font-size: 0.95rem;
+  color: var(--on-ink-2);
+}
+
+/* --- where the projects are ----------------------------------------------- */
+.region {
+  margin: 0;
+  padding: clamp(14px, 1.8vw, 24px);
   border: 1px solid var(--line-ink);
   border-radius: var(--r-lg);
   background: linear-gradient(160deg, rgb(25 28 25 / 0.9), rgb(13 15 13 / 0.9));
 }
-.bar {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 6px 16px;
-  align-items: baseline;
-}
-.bar-label {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--on-ink);
-}
-.bar-count {
-  font-size: 0.78rem;
-  color: var(--on-ink-3);
-  white-space: nowrap;
-}
-/* There is a real maximum here - the number of projects - so a track states a
-   genuine proportion rather than implying one. */
-.bar-track {
-  grid-column: 1 / -1;
-  height: 10px;
-  border-radius: 2px;
-  background: rgb(246 245 240 / 0.08);
-  overflow: hidden;
-}
-.bar-track i {
+.region svg {
   display: block;
-  height: 100%;
-  border-radius: 2px;
-  background: linear-gradient(180deg, #ffd83a, var(--yellow) 62%, #d9ae00);
-  box-shadow: 0 0 12px rgb(244 196 0 / 0.22);
+  width: 100%;
+  height: auto;
+  overflow: visible;
 }
-.bars-note {
+.region-outline {
+  fill: rgb(246 245 240 / 0.04);
+  stroke: rgb(246 245 240 / 0.28);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.region-dot {
+  fill: var(--yellow);
+  fill-opacity: 0.85;
+  stroke: rgb(13 15 13 / 0.9);
+  stroke-width: 2;
+}
+.region-leader {
+  stroke: rgb(246 245 240 / 0.28);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.region-label {
+  fill: var(--on-ink-2);
+  font-family: "Geist Mono Variable", monospace;
+  font-size: 19px;
+  letter-spacing: 0.04em;
+  text-anchor: end;
+}
+.region figcaption {
   margin-top: 14px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line-ink);
   font-family: "Geist Mono Variable", monospace;
   font-size: 0.64rem;
-  line-height: 1.55;
+  line-height: 1.6;
   color: var(--on-ink-3);
 }
 

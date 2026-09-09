@@ -386,9 +386,9 @@ export const content: Record<Lang, Copy> = {
       updated: "Stand: September 2026",
     },
     matrix: {
-      title: "44 dokumentierte Projekte.",
-      text: "Vom Bauernhof über Hotellerie und Gewerbe bis zur Industriehalle. So oft kam jedes Gewerk darin vor, meist mehrere im selben Projekt.",
-      note: "Gezählt aus den Leistungsbeschreibungen unserer Referenzliste.",
+      title: "Wir arbeiten dort, wo wir herkommen.",
+      text: "44 dokumentierte Projekte, vom Bauernhof über Hotellerie und Gewerbe bis zur Industriehalle. Die meisten liegen im Pustertal und im Ahrntal, viele davon in Sichtweite voneinander.",
+      note: "Orte aus unserer Referenzliste, Punktgröße nach Anzahl der Projekte. 43 davon liegen in Südtirol, eines in Innsbruck.",
     },
     profile: {
       title: "Ein Gebäude verbraucht nicht dann, wenn die Sonne scheint.",
@@ -667,9 +667,9 @@ export const content: Record<Lang, Copy> = {
       updated: "Aggiornato: settembre 2026",
     },
     matrix: {
-      title: "44 progetti documentati.",
-      text: "Dal maso all'hotel, dal negozio al capannone industriale. Ecco quante volte ricorre ogni lavorazione, spesso più di una nello stesso progetto.",
-      note: "Conteggio dalle descrizioni delle prestazioni del nostro elenco di referenze.",
+      title: "Lavoriamo dove siamo di casa.",
+      text: "44 progetti documentati, dal maso all'hotel, dal negozio al capannone industriale. La maggior parte si trova in Val Pusteria e in Valle Aurina, molti a poca distanza l'uno dall'altro.",
+      note: "Località dal nostro elenco di referenze, dimensione del punto secondo il numero di progetti. 43 si trovano in Alto Adige, uno a Innsbruck.",
     },
     profile: {
       title: "Un edificio non consuma quando splende il sole.",
@@ -945,9 +945,9 @@ export const content: Record<Lang, Copy> = {
       updated: "Updated: September 2026",
     },
     matrix: {
-      title: "44 documented projects.",
-      text: "From farmsteads through hospitality and retail to industrial halls. This is how often each trade appeared, usually several on the same project.",
-      note: "Counted from the scope descriptions on our reference list.",
+      title: "We work where we are from.",
+      text: "44 documented projects, from farmsteads through hospitality and retail to industrial halls. Most of them sit in the Pustertal and the Ahrntal, many within sight of one another.",
+      note: "Localities from our reference list, dot size by number of projects. 43 are in South Tyrol, one in Innsbruck.",
     },
     profile: {
       title: "A building does not draw power when the sun is out.",
