@@ -221,9 +221,9 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <p>
                 Elektro Lahner GmbH / S.r.l.
                 <br />
-                REA BZ-198182
-                <br />
                 P. IVA IT02697740211
+                <br />
+                SDI SUBM70N
               </p>
             </div>
           </div>

@@ -36,23 +36,41 @@ function Imprint() {
 
       <Reveal className="legal-content">
         <section>
-          <h2>{l.controller}</h2>
+          <h2>{l.owner}</h2>
           <p>
             <strong>{l.companyName}</strong>
             <br />
-            {l.registeredOffice}
+            {l.address.split("\n").map((line) => (
+              <span key={line}>
+                {line}
+                <br />
+              </span>
+            ))}
+            {l.phone}
             <br />
-            {l.contacts}
-            <br />
-            {l.register}
-            <br />
-            {l.vat}
+            <a href={`mailto:${l.email}`}>{l.email}</a>
             <br />
             {l.pec}
             <br />
-            {l.sdi}
+            {l.vat}
             <br />
-            {l.managingDirector}
+            {l.sdi}
+          </p>
+        </section>
+        <section>
+          <h2>{l.webTitle}</h2>
+          <p>
+            {l.webName}
+            <br />
+            {l.webAddress.split("\n").map((line) => (
+              <span key={line}>
+                {line}
+                <br />
+              </span>
+            ))}
+            <a href={`https://${l.webUrl}`} target="_blank" rel="noreferrer">
+              {l.webUrl}
+            </a>
           </p>
         </section>
         <section>

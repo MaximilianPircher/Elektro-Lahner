@@ -68,31 +68,26 @@ type Copy = {
     kicker: string;
     imprint: string;
     privacy: string;
-    controller: string;
+    owner: string;
     companyName: string;
-    registeredOffice: string;
-    contacts: string;
-    register: string;
-    vat: string;
+    address: string;
+    phone: string;
+    email: string;
     pec: string;
+    vat: string;
     sdi: string;
-    managingDirector: string;
+    webTitle: string;
+    webName: string;
+    webAddress: string;
+    webUrl: string;
     liabilityTitle: string;
     liabilityText: string;
-    privacyIntro: string;
-    dataTitle: string;
-    dataText: string;
-    basisTitle: string;
-    basisText: string;
-    recipientsTitle: string;
-    recipientsText: string;
-    retentionTitle: string;
-    retentionText: string;
-    rightsTitle: string;
-    rightsText: string;
-    authority: string;
-    cookiesTitle: string;
-    cookiesText: string;
+    privacyTitle: string;
+    privacyP1: string;
+    privacyP2: string;
+    privacyEmail: string;
+    siteTitle: string;
+    siteText: string;
     updated: string;
   };
   matrix: {
@@ -348,41 +343,31 @@ export const content: Record<Lang, Copy> = {
     legal: {
       kicker: "Rechtliche Informationen",
       imprint: "Impressum",
-      privacy: "Datenschutzerklärung",
-      controller: "Verantwortlicher und Diensteanbieter",
-      companyName: "Elektro Lahner GmbH / Elektro Lahner S.r.l.",
-      registeredOffice: "Sitz: Johann-Georg-Mahl-Straße 40/A, 39031 Bruneck (BZ), Italien",
-      contacts: "Tel. +39 0474 77 36 36 · info@elektro-lahner.com",
-      register: "Handelsregister Bozen · REA BZ-198182",
-      vat: "Steuer- und MwSt.-Nr.: IT02697740211",
+      privacy: "Datenschutz",
+      owner: "Inhaber der Internetseite",
+      companyName: "Elektro Lahner GmbH",
+      address: "J.-G.-Mahl Str. 40/A\n39031 Bruneck (BZ)",
+      phone: "Tel. +39 0474 77 36 36",
+      email: "info@elektro-lahner.com",
       pec: "PEC: elektro.lahner@legalmail.it",
-      sdi: "Empfängerkodex (SDI): SUBM70N",
-      managingDirector: "Geschäftsführer: Andreas Lahner",
-      liabilityTitle: "Haftung für Inhalte und Links",
+      vat: "MwSt.Nr./UID.Nr.: IT02697740211",
+      sdi: "Empfängerkodex für elektronische Rechnungen: SUBM70N",
+      webTitle: "Web",
+      webName: "Contech",
+      webAddress: "Mühlen Gewerbegebiet 3\nI-39032 Sand in Taufers (BZ)",
+      webUrl: "www.contech.it",
+      liabilityTitle: "Haftungshinweis",
       liabilityText:
-        "Die Inhalte wurden sorgfältig erstellt. Für externe Seiten sind ausschließlich deren Betreiber verantwortlich. Die Informationen dieser Website ersetzen keine individuelle technische Beratung.",
-      privacyIntro:
-        "Diese Hinweise erläutern die Verarbeitung personenbezogener Daten beim Besuch dieser Website gemäß der DSGVO und dem italienischen Datenschutzrecht.",
-      dataTitle: "Verarbeitete Daten",
-      dataText:
-        "Beim technischen Aufruf können Server-Logdaten wie IP-Adresse, Zeitpunkt, aufgerufene Ressource, Referrer, Browser und Betriebssystem verarbeitet werden. Bei Kontaktaufnahme verarbeiten wir Ihre Kontaktdaten und Nachricht zur Bearbeitung Ihrer Anfrage.",
-      basisTitle: "Zwecke und Rechtsgrundlagen",
-      basisText:
-        "Technische Bereitstellung und Sicherheit erfolgen auf Grundlage berechtigter Interessen. Anfragen werden zur Durchführung vorvertraglicher Maßnahmen, Vertragserfüllung oder auf Grundlage berechtigter Interessen bearbeitet.",
-      recipientsTitle: "Empfänger",
-      recipientsText:
-        "Daten können an technisch erforderliche Hosting- und IT-Dienstleister übermittelt werden, die weisungsgebunden tätig sind. Eine Nutzung zu Werbe- oder Profilingzwecken erfolgt auf dieser Website derzeit nicht.",
-      retentionTitle: "Speicherdauer",
-      retentionText:
-        "Technische Protokolle werden nur so lange gespeichert, wie es für Betrieb und Sicherheit erforderlich ist. Kommunikationsdaten werden entsprechend der Anfrage und gesetzlicher Aufbewahrungspflichten gespeichert.",
-      rightsTitle: "Ihre Rechte",
-      rightsText:
-        "Sie haben, soweit die gesetzlichen Voraussetzungen vorliegen, Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch. Eine erteilte Einwilligung kann jederzeit für die Zukunft widerrufen werden.",
-      authority:
-        "Beschwerden können an den Garante per la protezione dei dati personali gerichtet werden: garanteprivacy.it.",
-      cookiesTitle: "Cookies und lokale Einstellungen",
-      cookiesText:
-        "Diese Website verwendet derzeit keine Analyse-, Marketing- oder Profiling-Cookies. Gespeichert werden nur technisch notwendige Einstellungen für Sprache und Cookie-Hinweis. Sie können die Auswahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.",
+        "Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.",
+      privacyTitle: "Informationsnote laut Art. 13 DS-GVO 2016/679",
+      privacyP1:
+        "Gemäß Artikel 13 DS-GVO 2016/679, den Datenschutz betreffend, möchten wir Ihnen mitteilen, dass Elektro Lahner GmbH als Datenverarbeiter Ihre persönlichen Daten in seinem Archiv aufbewahrt. Die Verwendung Ihrer Daten unterliegt den Prinzipien der Korrektheit, Rechtmäßigkeit und Transparenz, wobei Ihre Privatsphäre und Ihre Rechte gewahrt werden.",
+      privacyP2:
+        "Diese Daten können von Elektro Lahner GmbH für die Erhebung von (ausschließlich anonymen) Statistiken verwendet werden, und um Ihnen Werbematerial, Kataloge und Preislisten zuzusenden, sowie um Sie über unsere Initiativen und Angebote auf dem Laufenden zu halten. Sie können jederzeit die von Art. 7 des Ges. Dekr. Nr. 196/2003 vorgesehenen Rechte ausüben, unter ihnen den Zugang, die Berichtigung, die Aktualisierung, die Integration und die Umwandlung in eine anonyme Form Ihrer Daten, aber auch deren Löschung, sowie die Widersetzung gegen ihren Gebrauch, indem sie sich an den zuständigen Sachbearbeiter wenden, der von uns gemäß Artikel 13, Buchstabe f) Ges. Dekr. 196/2003 ernannt wird in der Person des Datenverarbeiters, der unter der folgenden elektronischen Postadresse erreichbar ist:",
+      privacyEmail: "info@elektro-lahner.com",
+      siteTitle: "Diese Website",
+      siteText:
+        "Diese Website verwendet keine Analyse- oder Marketing-Cookies. Gespeichert werden ausschließlich Ihre Sprachauswahl im lokalen Speicher des Browsers und Ihre Cookie-Entscheidung in einem technisch notwendigen Cookie. Die Auswahl können Sie jederzeit über „Cookie-Einstellungen“ im Seitenfuß ändern.",
       updated: "Stand: September 2026",
     },
     matrix: {
@@ -628,43 +613,33 @@ export const content: Record<Lang, Copy> = {
     },
     legal: {
       kicker: "Informazioni legali",
-      imprint: "Note legali",
-      privacy: "Informativa privacy",
-      controller: "Titolare del trattamento e prestatore del servizio",
-      companyName: "Elektro Lahner S.r.l. / Elektro Lahner GmbH",
-      registeredOffice: "Sede: Via Johann Georg Mahl 40/A, 39031 Brunico (BZ), Italia",
-      contacts: "Tel. +39 0474 77 36 36 · info@elektro-lahner.com",
-      register: "Registro Imprese di Bolzano · REA BZ-198182",
-      vat: "Codice fiscale e P. IVA: IT02697740211",
+      imprint: "Impressum",
+      privacy: "Privacy",
+      owner: "Proprietario del sito internet",
+      companyName: "Elektro Lahner Srl",
+      address: "Via J.-G.-Mahl, 40/A\n39031 Brunico (BZ)",
+      phone: "Tel. +39 0474 77 36 36",
+      email: "info@elektro-lahner.com",
       pec: "PEC: elektro.lahner@legalmail.it",
-      sdi: "Codice destinatario (SDI): SUBM70N",
-      managingDirector: "Amministratore: Andreas Lahner",
-      liabilityTitle: "Responsabilità per contenuti e link",
+      vat: "P.IVA: 02697740211",
+      sdi: "Codice destinatario per fatture elettroniche: SUBM70N",
+      webTitle: "Web",
+      webName: "Contech",
+      webAddress: "Molini - Zona Industriale 3\nI-39032 Campo Tures (BZ)",
+      webUrl: "www.contech.it",
+      liabilityTitle: "Links",
       liabilityText:
-        "I contenuti sono stati preparati con cura. Per i siti esterni sono responsabili esclusivamente i rispettivi gestori. Le informazioni non sostituiscono una consulenza tecnica individuale.",
-      privacyIntro:
-        "La presente informativa descrive il trattamento dei dati personali durante la visita del sito ai sensi del GDPR e della normativa italiana.",
-      dataTitle: "Dati trattati",
-      dataText:
-        "Durante l’accesso tecnico possono essere trattati dati di log come indirizzo IP, data e ora, risorsa richiesta, referrer, browser e sistema operativo. Se ci contattate, trattiamo i dati di contatto e il messaggio per rispondere.",
-      basisTitle: "Finalità e basi giuridiche",
-      basisText:
-        "La fornitura tecnica e la sicurezza si basano sul legittimo interesse. Le richieste sono trattate per misure precontrattuali, esecuzione di un contratto o legittimo interesse.",
-      recipientsTitle: "Destinatari",
-      recipientsText:
-        "I dati possono essere affidati a fornitori di hosting e servizi IT strettamente necessari. Attualmente questo sito non utilizza dati per pubblicità o profilazione.",
-      retentionTitle: "Conservazione",
-      retentionText:
-        "I log tecnici sono conservati solo per il tempo necessario al funzionamento e alla sicurezza. Le comunicazioni sono conservate in base alla richiesta e agli obblighi di legge.",
-      rightsTitle: "I vostri diritti",
-      rightsText:
-        "Nei casi previsti potete richiedere accesso, rettifica, cancellazione, limitazione, portabilità e opposizione. Il consenso può essere revocato in qualsiasi momento per il futuro.",
-      authority:
-        "È possibile presentare reclamo al Garante per la protezione dei dati personali: garanteprivacy.it.",
-      cookiesTitle: "Cookie e impostazioni locali",
-      cookiesText:
-        "Il sito non utilizza attualmente cookie di analisi, marketing o profilazione. Salva soltanto le preferenze tecniche per lingua e avviso cookie. La scelta può essere modificata dal footer.",
-      updated: "Aggiornato: settembre 2026",
+        "Informazioni riguardanti la responsabilità: nonostante l'accurato controllo da parte nostra, non rispondiamo del contenuto di link esterni. Per i contenuti delle pagine collegate sono responsabili i rispettivi gestori.",
+      privacyTitle: "Informativa ai sensi dell'art. 13 GDPR 2016/679",
+      privacyP1:
+        "Ai sensi dell'art. 13 del GDPR 2016/679 sulla privacy, La informiamo che, Elektro Lahner Srl in qualità di Titolare del trattamento, conserverà nel proprio archivio i dati a Lei relativi. Il trattamento delle informazioni che La riguardano, sarà improntato ai principi di correttezza, liceità e trasparenza e tutelando la Sua riservatezza e i Suoi diritti.",
+      privacyP2:
+        "Questi potranno essere usati da Elektro Lahner Srl per l'elaborazione di statistiche (esclusivamente anonime) e per inviarLe materiale pubblicitario, cataloghi e listini prezzo, nonché per tenerLa aggiornata sulle nostre iniziative e offerte promozionali. In qualsiasi momento, Lei potrà esercitare tutti i diritti previsti dall'art. 7 del D.Lgs. n. 196/2003 tra cui i diritti di accesso, rettifica, aggiornamento, integrazione, trasformazione in forma anonima dei dati o cancellazione degli stessi, nonché di opporsi al loro utilizzo rivolgendosi al responsabile, da noi all'uopo nominato ai sensi dell'articolo 13 lettera f) Dlgs 196/2003, nella persona del titolare dell'esercizio, reperibile al seguente indirizzo di posta elettronica:",
+      privacyEmail: "info@elektro-lahner.com",
+      siteTitle: "Questo sito",
+      siteText:
+        "Questo sito non utilizza cookie di analisi o di marketing. Vengono memorizzate soltanto la lingua scelta nella memoria locale del browser e la Sua decisione sui cookie in un cookie tecnicamente necessario. Può modificare la scelta in qualsiasi momento tramite „Impostazioni cookie“ nel piè di pagina.",
+      updated: "Aggiornamento: settembre 2026",
     },
     matrix: {
       title: "Lavoriamo dove siamo di casa.",
@@ -906,43 +881,33 @@ export const content: Record<Lang, Copy> = {
     },
     legal: {
       kicker: "Legal information",
-      imprint: "Legal notice",
-      privacy: "Privacy policy",
-      controller: "Data controller and service provider",
-      companyName: "Elektro Lahner S.r.l. / Elektro Lahner GmbH",
-      registeredOffice: "Registered office: Via Johann Georg Mahl 40/A, 39031 Brunico (BZ), Italy",
-      contacts: "Tel. +39 0474 77 36 36 · info@elektro-lahner.com",
-      register: "Bolzano Companies Register · REA BZ-198182",
-      vat: "Tax and VAT number: IT02697740211",
-      pec: "Certified email (PEC): elektro.lahner@legalmail.it",
-      sdi: "Recipient code (SDI): SUBM70N",
-      managingDirector: "Managing director: Andreas Lahner",
-      liabilityTitle: "Content and external links",
+      imprint: "Imprint",
+      privacy: "Privacy",
+      owner: "Owner of this website",
+      companyName: "Elektro Lahner GmbH / Srl",
+      address: "J.-G.-Mahl Str. 40/A\n39031 Bruneck (BZ), Italy",
+      phone: "Tel. +39 0474 77 36 36",
+      email: "info@elektro-lahner.com",
+      pec: "PEC: elektro.lahner@legalmail.it",
+      vat: "VAT no.: IT02697740211",
+      sdi: "Recipient code for electronic invoices: SUBM70N",
+      webTitle: "Web",
+      webName: "Contech",
+      webAddress: "Mühlen Gewerbegebiet 3\nI-39032 Sand in Taufers (BZ)",
+      webUrl: "www.contech.it",
+      liabilityTitle: "Liability for links",
       liabilityText:
-        "Content has been prepared with care. External website operators remain solely responsible for their pages. Website information does not replace individual technical advice.",
-      privacyIntro:
-        "This notice explains how personal data is processed when visiting this website under the GDPR and Italian data protection law.",
-      dataTitle: "Data processed",
-      dataText:
-        "Technical access may involve server log data such as IP address, time, requested resource, referrer, browser and operating system. When you contact us, we process your contact details and message to respond.",
-      basisTitle: "Purposes and legal bases",
-      basisText:
-        "Technical delivery and security rely on legitimate interests. Enquiries are handled for pre-contractual measures, contract performance or legitimate interests.",
-      recipientsTitle: "Recipients",
-      recipientsText:
-        "Data may be processed by necessary hosting and IT providers acting under instructions. This website currently does not use data for advertising or profiling.",
-      retentionTitle: "Retention",
-      retentionText:
-        "Technical logs are retained only as long as necessary for operation and security. Communications are retained according to the enquiry and statutory obligations.",
-      rightsTitle: "Your rights",
-      rightsText:
-        "Where legal conditions apply, you may request access, correction, deletion, restriction, portability and object to processing. Consent can be withdrawn at any time for the future.",
-      authority:
-        "Complaints may be submitted to the Italian Data Protection Authority: garanteprivacy.it.",
-      cookiesTitle: "Cookies and local preferences",
-      cookiesText:
-        "The website currently uses no analytics, marketing or profiling cookies. It stores only technical preferences for language and the cookie notice. You can change the choice from the footer.",
-      updated: "Updated: September 2026",
+        "Despite careful review of the content, we accept no liability for the contents of external links. The operators of the linked pages are solely responsible for their content.",
+      privacyTitle: "Information notice under Art. 13 GDPR 2016/679",
+      privacyP1:
+        "Pursuant to Article 13 of GDPR 2016/679 on data protection, we inform you that Elektro Lahner GmbH, as data controller, keeps your personal data in its archive. Your data is handled according to the principles of correctness, lawfulness and transparency, while safeguarding your privacy and your rights.",
+      privacyP2:
+        "This data may be used by Elektro Lahner GmbH to compile (exclusively anonymous) statistics and to send you advertising material, catalogues and price lists, as well as to keep you informed about our initiatives and offers. You may at any time exercise the rights provided for by Art. 7 of Legislative Decree no. 196/2003, among them access, rectification, updating, integration and conversion of your data into anonymous form, as well as its deletion and objection to its use, by contacting the responsible person appointed by us under Article 13 letter f) of Legislative Decree 196/2003, in the person of the data controller, reachable at the following email address:",
+      privacyEmail: "info@elektro-lahner.com",
+      siteTitle: "This website",
+      siteText:
+        "This website uses no analytics or marketing cookies. Only your language choice in the browser's local storage and your cookie decision in a technically necessary cookie are stored. You can change that choice at any time via “Cookie settings” in the footer.",
+      updated: "Last updated: September 2026",
     },
     matrix: {
       title: "We work where we are from.",

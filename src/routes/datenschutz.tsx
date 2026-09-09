@@ -7,13 +7,13 @@ export const Route = createFileRoute("/datenschutz")({
   component: Privacy,
   head: () => ({
     meta: [
-      { title: "Datenschutzerklärung | Elektro Lahner" },
+      { title: "Datenschutz | Elektro Lahner" },
       {
         name: "description",
         content:
           "Wie die Elektro Lahner GmbH personenbezogene Daten beim Besuch dieser Website verarbeitet, gemäß DSGVO und italienischem Datenschutzrecht.",
       },
-      { property: "og:title", content: "Datenschutzerklärung | Elektro Lahner" },
+      { property: "og:title", content: "Datenschutz | Elektro Lahner" },
       {
         property: "og:description",
         content:
@@ -26,44 +26,28 @@ export const Route = createFileRoute("/datenschutz")({
 function Privacy() {
   const { t } = useSite();
   const l = t.legal;
-  const sections: [string, string][] = [
-    [l.dataTitle, l.dataText],
-    [l.basisTitle, l.basisText],
-    [l.recipientsTitle, l.recipientsText],
-    [l.retentionTitle, l.retentionText],
-    [l.rightsTitle, `${l.rightsText} ${l.authority}`],
-    [l.cookiesTitle, l.cookiesText],
-  ];
-
   return (
     <main className="inner-page legal-page page-pad">
       <section className="page-hero" style={{ paddingInline: 0 }}>
         <Reveal as="header">
           <span className="kicker">{l.kicker}</span>
           <h1>{l.privacy}</h1>
-          <p>{l.privacyIntro}</p>
         </Reveal>
       </section>
 
       <Reveal className="legal-content">
         <section>
-          <h2>{l.controller}</h2>
+          <h2>{l.privacyTitle}</h2>
+          <p>{l.privacyP1}</p>
+          <p>{l.privacyP2}</p>
           <p>
-            <strong>{l.companyName}</strong>
-            <br />
-            {l.registeredOffice}
-            <br />
-            {l.contacts}
-            <br />
-            {l.pec}
+            <a href={`mailto:${l.privacyEmail}`}>{l.privacyEmail}</a>
           </p>
         </section>
-        {sections.map(([title, text]) => (
-          <section key={title}>
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </section>
-        ))}
+        <section>
+          <h2>{l.siteTitle}</h2>
+          <p>{l.siteText}</p>
+        </section>
         <small>{l.updated}</small>
         <Link className="text-link" to="/impressum">
           <ArrowLeft size={16} /> {l.imprint}
