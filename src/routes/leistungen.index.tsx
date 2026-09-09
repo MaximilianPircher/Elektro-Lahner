@@ -72,7 +72,7 @@ function Services() {
         <DrawRule />
       </div>
 
-      <section className="section-pad page-pad">
+      <section className="page-pad services-grid-section">
         <Stagger className="service-overview-grid" step={0.06}>
           {t.services.items.map((service, index) => {
             const Icon = icons[index] ?? Lightning;

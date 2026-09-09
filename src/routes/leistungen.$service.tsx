@@ -13,6 +13,7 @@ import {
   Wrench,
 } from "@phosphor-icons/react";
 import { content } from "../content";
+import { projects, type Capability } from "../projects";
 import { DayProfile } from "../components/day-profile";
 import { useSite } from "../site-shell";
 import { Item, Reveal, Stagger } from "../motion";
@@ -45,6 +46,17 @@ const icons = [
   Lightbulb,
   SpeakerHigh,
 ];
+
+// Which trade in the reference data each service page corresponds to. Three
+// services have no counterpart in the published scope texts, so those pages
+// simply do not show the section rather than showing an empty one.
+const traceable: Record<string, Capability> = {
+  elektroinstallationen: "install",
+  "knx-gebaeudeautomation": "knx",
+  photovoltaik: "pv",
+  sicherheitstechnik: "security",
+  beleuchtung: "light",
+};
 
 // Same rhythm as the overview grid, so a card and its page share a surface.
 const surfaces: Record<number, string> = {
@@ -98,7 +110,7 @@ function ServiceDetail() {
         </Reveal>
       </section>
 
-      <section className="section-pad page-pad service-page-body">
+      <section className="page-pad service-page-body">
         <Reveal>
           <p className="service-lead">{service.intro}</p>
         </Reveal>
@@ -128,6 +140,50 @@ function ServiceDetail() {
           </Reveal>
         </div>
       </section>
+
+      {(() => {
+        const trade = traceable[slug];
+        if (!trade) return null;
+        const matching = projects.filter((project) => project.tags.includes(trade));
+        // The reference page lists all of these anyway, so nothing is held back
+        // here; long lists are simply capped and the link carries the rest.
+        const shown = matching.slice(0, 9);
+        return (
+          <section className="section-pad page-pad proof-list" style={{ paddingTop: 0 }}>
+            <Reveal>
+              <span className="kicker">
+                {local("Aus der Referenzliste", "Dall'elenco referenze", "From the reference list")}
+              </span>
+              <h2>
+                {local(
+                  `${matching.length} dokumentierte Projekte mit dieser Leistung.`,
+                  `${matching.length} progetti documentati con questa prestazione.`,
+                  `${matching.length} documented projects with this trade.`,
+                )}
+              </h2>
+            </Reveal>
+            <Stagger className="proof-names" step={0.04}>
+              {shown.map((project) => (
+                <Item
+                  as="li"
+                  className="proof-name"
+                  key={`${project.name}-${project.place}`}
+                  y={12}
+                >
+                  <strong>{project.name}</strong>
+                  <span className="mono">{project.place}</span>
+                </Item>
+              ))}
+            </Stagger>
+            <Reveal>
+              <Link className="text-link" to="/referenzen">
+                {local("Alle Referenzen ansehen", "Vedi tutte le referenze", "View all references")}{" "}
+                <ArrowRight size={16} />
+              </Link>
+            </Reveal>
+          </section>
+        );
+      })()}
 
       {/* The day profile belongs here rather than on the home page: it is a
           schematic illustration, and this is the page it actually explains. */}

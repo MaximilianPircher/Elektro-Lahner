@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react";
+import { ArrowRight, Clock, EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react";
+import { contacts, type RoleKey } from "../team";
 import { useSite } from "../site-shell";
 import { Item, Reveal, Stagger } from "../motion";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/kontakt")({
   component: Contact,
@@ -34,6 +36,24 @@ function Contact() {
     ),
   );
   const mailto = `mailto:info@elektro-lahner.com?subject=${subject}`;
+
+  const roleLabels: Record<RoleKey, string> = {
+    management: local(
+      "Geschäftsführung und Vertrieb",
+      "Direzione e vendite",
+      "Management and sales",
+    ),
+    planning: local("Planung", "Progettazione", "Planning"),
+    service: local(
+      "Wartung, Service, Thermografie, Energieoptimierung",
+      "Manutenzione, assistenza, termografia, ottimizzazione energetica",
+      "Maintenance, service, thermography, energy optimisation",
+    ),
+    admin: local("Verwaltung", "Amministrazione", "Administration"),
+    foreman: local("Vorarbeiter", "Caposquadra", "Foreman"),
+    electrician: local("Elektriker", "Elettricista", "Electrician"),
+    apprentice: local("Lehrling", "Apprendista", "Apprentice"),
+  };
 
   return (
     <main className="inner-page">
@@ -89,6 +109,43 @@ function Contact() {
             <strong>{t.contact.weekdays}</strong>
           </Item>
         </Stagger>
+      </section>
+      {/* Who to write to, so an enquiry does not have to start at reception. */}
+      <section className="section-pad page-pad" style={{ paddingTop: 0 }}>
+        <Reveal className="reference-intro">
+          <span className="kicker">
+            {local("Direkte Ansprechpartner", "Referenti diretti", "Direct contacts")}
+          </span>
+          <h2>
+            {local("Wer sich bei Ihnen meldet.", "Chi vi risponde.", "Who gets back to you.")}
+          </h2>
+        </Reveal>
+        <Stagger className="team-grid" step={0.07}>
+          {contacts.map((person) => (
+            <Item className="team-card" key={person.name}>
+              <h3>{person.name}</h3>
+              <p>{person.roles.map((role) => roleLabels[role]).join(" · ")}</p>
+              {person.email ? (
+                <a href={`mailto:${person.email}`}>
+                  <EnvelopeSimple size={15} /> {person.email}
+                </a>
+              ) : (
+                <a href="tel:+390474773636">
+                  <Phone size={15} /> +39 0474 77 36 36
+                </a>
+              )}
+            </Item>
+          ))}
+        </Stagger>
+        <Reveal>
+          <Link
+            className="text-link"
+            style={{ marginTop: "clamp(24px, 3vw, 36px)" }}
+            to="/unternehmen"
+          >
+            {local("Das ganze Team", "Tutto il team", "The whole team")} <ArrowRight size={16} />
+          </Link>
+        </Reveal>
       </section>
     </main>
   );

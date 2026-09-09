@@ -1613,7 +1613,9 @@ footer {
 
 .service-page-body {
   display: grid;
-  gap: clamp(30px, 4vw, 48px);
+  gap: clamp(26px, 3.2vw, 40px);
+  padding-top: clamp(46px, 5.5vw, 84px);
+  padding-bottom: clamp(46px, 5.5vw, 84px);
 }
 .service-lead {
   max-width: 64ch;
@@ -1831,6 +1833,48 @@ footer {
   border-radius: 50%;
   background: var(--yellow);
   box-shadow: 0 0 0 5px rgb(244 196 0 / 0.2);
+}
+
+.services-grid-section {
+  padding-top: clamp(40px, 5vw, 72px);
+  padding-bottom: clamp(48px, 6vw, 90px);
+}
+
+/* --- named reference projects on a service page --------------------------- */
+.proof-list .kicker {
+  margin-bottom: 16px;
+}
+.proof-list h2 {
+  max-width: 22ch;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 510;
+}
+.proof-names {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: clamp(26px, 3.2vw, 38px) 0 clamp(24px, 3vw, 34px);
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.proof-name {
+  display: grid;
+  gap: 6px;
+  padding: clamp(18px, 2vw, 24px);
+  background: var(--surface);
+}
+.proof-name strong {
+  font-size: 1rem;
+  font-weight: 520;
+  letter-spacing: -0.018em;
+}
+.proof-name span {
+  font-size: 0.7rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-3);
 }
 
 /* --- team ----------------------------------------------------------------- */
@@ -2305,7 +2349,8 @@ a.contact-tile:hover {
     align-items: start;
   }
   .value-grid,
-  .team-grid {
+  .team-grid,
+  .proof-names {
     grid-template-columns: repeat(2, 1fr);
   }
   .service-principle {
@@ -2365,6 +2410,7 @@ a.contact-tile:hover {
   .contact-grid,
   .value-grid,
   .team-grid,
+  .proof-names,
   .crew,
   .service-pagination,
   .service-content ul {
