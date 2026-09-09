@@ -10,6 +10,7 @@ import {
 import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { DayProfile } from "../components/day-profile";
+import { SegmentMeter } from "../components/segment-meter";
 import { KnxBus } from "../components/knx-bus";
 import { referenceNames } from "../content";
 import { useSite } from "../site-shell";
@@ -38,21 +39,33 @@ function Home() {
   const spotlight = useSpotlight();
   const divisions = t.services.items.slice(0, 4);
 
-  const facts = [
+  const years = new Date().getFullYear() - 2001;
+  const meters = [
     {
-      value: new Date().getFullYear() - 2001,
+      key: "years",
+      value: String(years),
       unit: "+",
       label: local("Jahre Erfahrung", "Anni di esperienza", "Years of experience"),
+      segments: years,
+      scaleNote: local("1 Segment = 1 Jahr", "1 segmento = 1 anno", "1 segment = 1 year"),
+      counter: years,
     },
     {
-      value: 1000,
+      key: "kwp",
+      value: "1.000",
       unit: " kWp",
       label: local("Photovoltaik am Netz", "Fotovoltaico in rete", "Photovoltaics on the grid"),
+      segments: 10,
+      scaleNote: local("1 Segment = 100 kWp", "1 segmento = 100 kWp", "1 segment = 100 kWp"),
+      counter: 1000,
     },
     {
-      value: t.services.items.length,
-      unit: "",
+      key: "fields",
+      value: String(t.services.items.length),
       label: local("Leistungsbereiche", "Aree di competenza", "Fields of expertise"),
+      segments: t.services.items.length,
+      scaleNote: local("1 Segment = 1 Bereich", "1 segmento = 1 area", "1 segment = 1 field"),
+      counter: t.services.items.length,
     },
   ];
 
@@ -126,17 +139,20 @@ function Home() {
           <Reveal className="telemetry-copy">
             <h2>{t.profile.title}</h2>
             <p className="lead">{t.profile.text}</p>
-            <Stagger className="readouts" step={0.09}>
-              {facts.map((fact) => (
-                <Item className="readout" key={fact.label} y={14}>
-                  <strong className="mono">
-                    <Counter value={fact.value} locale={t.htmlLang} />
-                    <i>{fact.unit}</i>
-                  </strong>
-                  <span>{fact.label}</span>
-                </Item>
+            <div className="readouts">
+              {meters.map((meter, index) => (
+                <SegmentMeter
+                  key={meter.key}
+                  value={meter.value}
+                  {...(meter.unit ? { unit: meter.unit } : {})}
+                  label={meter.label}
+                  segments={meter.segments}
+                  scaleNote={meter.scaleNote}
+                  delay={index * 0.12}
+                  formatted={<Counter value={meter.counter} locale={t.htmlLang} />}
+                />
               ))}
-            </Stagger>
+            </div>
           </Reveal>
 
           <Reveal delay={0.1}>

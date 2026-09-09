@@ -1138,33 +1138,63 @@ footer {
 
 .readouts {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: start;
-  gap: clamp(20px, 3vw, 44px);
+  gap: clamp(18px, 2.2vw, 26px);
   margin-top: clamp(26px, 3.5vw, 40px);
-  padding-top: 24px;
+  padding-top: 26px;
   border-top: 1px solid var(--line-ink);
 }
-.readout strong {
+
+.meter-head {
   display: flex;
   align-items: baseline;
-  gap: 4px;
-  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  justify-content: space-between;
+  gap: 16px;
+}
+.meter-head strong {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
   font-weight: 440;
   letter-spacing: -0.045em;
   line-height: 1;
   color: var(--on-ink);
 }
-.readout strong i {
+.meter-head strong i {
   font-style: normal;
-  font-size: 0.44em;
+  font-size: 0.46em;
   font-weight: 520;
+  letter-spacing: -0.01em;
   color: var(--yellow);
 }
-.readout > span {
+.meter-head em {
+  font-style: normal;
+  font-size: 0.64rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--on-ink-3);
+}
+
+/* One segment is one real unit, so the row is never padded out to a maximum. */
+.meter-track {
+  display: flex;
+  gap: 3px;
+  height: 9px;
+  margin-top: 12px;
+}
+.meter-track span {
+  flex: 1;
+  border-radius: 2px;
+  /* lit-segment shading, so the row reads as an instrument rather than a bar */
+  background: linear-gradient(180deg, #ffd83a, var(--yellow) 62%, #d9ae00);
+  box-shadow: 0 0 10px rgb(244 196 0 / 0.18);
+  transform-origin: bottom;
+  will-change: transform;
+}
+
+.meter-label {
   display: block;
-  margin-top: 9px;
-  font-family: "Geist Mono Variable", monospace;
+  margin-top: 11px;
   font-size: 0.66rem;
   letter-spacing: 0.13em;
   text-transform: uppercase;
