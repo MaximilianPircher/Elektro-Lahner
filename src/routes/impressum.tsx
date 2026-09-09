@@ -3,7 +3,23 @@ import { ArrowRight } from "@phosphor-icons/react";
 import { useSite } from "../site-shell";
 import { Reveal } from "../motion";
 
-export const Route = createFileRoute("/impressum")({ component: Imprint });
+export const Route = createFileRoute("/impressum")({
+  component: Imprint,
+  head: () => ({
+    meta: [
+      { title: "Impressum | Elektro Lahner" },
+      {
+        name: "description",
+        content: "Anbieterangaben der Elektro Lahner GmbH / S.r.l., Bruneck (BZ), Südtirol.",
+      },
+      { property: "og:title", content: "Impressum | Elektro Lahner" },
+      {
+        property: "og:description",
+        content: "Anbieterangaben der Elektro Lahner GmbH / S.r.l., Bruneck (BZ), Südtirol.",
+      },
+    ],
+  }),
+});
 
 function Imprint() {
   const { t } = useSite();

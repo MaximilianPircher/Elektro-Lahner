@@ -1,11 +1,30 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Compass, Handshake, Lightning } from "@phosphor-icons/react";
+import { ArrowRight, Compass, EnvelopeSimple, Handshake, Lightning } from "@phosphor-icons/react";
 import { motion, useReducedMotion, useScroll, useSpring } from "motion/react";
 import { useRef } from "react";
+import { contacts, crew, headcount, type RoleKey } from "../team";
 import { useSite } from "../site-shell";
 import { Counter, DrawRule, Item, Reveal, Stagger } from "../motion";
 
-export const Route = createFileRoute("/unternehmen")({ component: Company });
+export const Route = createFileRoute("/unternehmen")({
+  component: Company,
+  head: () => ({
+    meta: [
+      { title: "Unternehmen | Elektro Lahner" },
+      {
+        name: "description",
+        content:
+          "Seit 2001 in Bruneck: Andreas Lahner gründete den Betrieb, heute arbeiten 12 Menschen an Elektrotechnik, Gebäudeautomation und Photovoltaik in Südtirol.",
+      },
+      { property: "og:title", content: "Unternehmen | Elektro Lahner" },
+      {
+        property: "og:description",
+        content:
+          "Seit 2001 in Bruneck: Andreas Lahner gründete den Betrieb, heute arbeiten 12 Menschen an Elektrotechnik, Gebäudeautomation und Photovoltaik in Südtirol.",
+      },
+    ],
+  }),
+});
 
 function Company() {
   const { lang, t } = useSite();
@@ -17,6 +36,25 @@ function Company() {
   const timelineRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: timelineRef, offset: ["start 80%", "end 60%"] });
   const fill = useSpring(scrollYProgress, { stiffness: 130, damping: 30, restDelta: 0.001 });
+
+  const roleLabels: Record<RoleKey, string> = {
+    management: local("Geschäftsführung", "Direzione", "Management"),
+    planning: local("Planung", "Progettazione", "Planning"),
+    service: local(
+      "Wartung, Service, Thermografie",
+      "Manutenzione, assistenza, termografia",
+      "Maintenance, service, thermography",
+    ),
+    admin: local("Verwaltung", "Amministrazione", "Administration"),
+    foreman: local("Vorarbeiter", "Caposquadra", "Foreman"),
+    electrician: local("Elektriker", "Elettricista", "Electrician"),
+    apprentice: local("Lehrlinge", "Apprendisti", "Apprentices"),
+  };
+  const crewLabels: Record<RoleKey, string> = {
+    ...roleLabels,
+    foreman: local("Vorarbeiter", "Capisquadra", "Foremen"),
+    electrician: local("Elektriker", "Elettricisti", "Electricians"),
+  };
 
   const values = [
     [
@@ -94,6 +132,12 @@ function Company() {
             <span>{local("Jahre im Einsatz", "anni di attività", "years in operation")}</span>
           </div>
           <div>
+            <strong className="mono">{headcount}</strong>
+            <span>
+              {local("Mitarbeiter im Betrieb", "collaboratori in azienda", "people in the company")}
+            </span>
+          </div>
+          <div>
             <strong className="mono">360°</strong>
             <span>
               {local(
@@ -149,6 +193,42 @@ function Company() {
             ))}
           </Stagger>
         </div>
+      </section>
+
+      <section className="section-pad page-pad" style={{ paddingTop: 0 }}>
+        <Reveal className="history-heading">
+          <span className="kicker">{local("Das Team", "Il team", "The team")}</span>
+          <h2>
+            {local(
+              `${headcount} Menschen, die die Anlage am Ende bauen.`,
+              `${headcount} persone che alla fine realizzano l'impianto.`,
+              `${headcount} people who actually build the installation.`,
+            )}
+          </h2>
+        </Reveal>
+
+        <Stagger className="team-grid" step={0.07}>
+          {contacts.map((person) => (
+            <Item className="team-card" key={person.name}>
+              <h3>{person.name}</h3>
+              <p>{person.roles.map((role) => roleLabels[role]).join(" · ")}</p>
+              {person.email ? (
+                <a href={`mailto:${person.email}`}>
+                  <EnvelopeSimple size={15} /> {person.email}
+                </a>
+              ) : null}
+            </Item>
+          ))}
+        </Stagger>
+
+        <Stagger className="crew" step={0.08}>
+          {crew.map((group) => (
+            <Item className="crew-group" key={group.role}>
+              <h4 className="mono">{crewLabels[group.role]}</h4>
+              <p>{group.names.join(", ")}</p>
+            </Item>
+          ))}
+        </Stagger>
       </section>
 
       <section className="section-pad page-pad company-cta" style={{ paddingTop: 0 }}>

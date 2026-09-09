@@ -3,7 +3,25 @@ import { ArrowLeft } from "@phosphor-icons/react";
 import { useSite } from "../site-shell";
 import { Reveal } from "../motion";
 
-export const Route = createFileRoute("/datenschutz")({ component: Privacy });
+export const Route = createFileRoute("/datenschutz")({
+  component: Privacy,
+  head: () => ({
+    meta: [
+      { title: "Datenschutzerklärung | Elektro Lahner" },
+      {
+        name: "description",
+        content:
+          "Wie die Elektro Lahner GmbH personenbezogene Daten beim Besuch dieser Website verarbeitet, gemäß DSGVO und italienischem Datenschutzrecht.",
+      },
+      { property: "og:title", content: "Datenschutzerklärung | Elektro Lahner" },
+      {
+        property: "og:description",
+        content:
+          "Wie die Elektro Lahner GmbH personenbezogene Daten beim Besuch dieser Website verarbeitet, gemäß DSGVO und italienischem Datenschutzrecht.",
+      },
+    ],
+  }),
+});
 
 function Privacy() {
   const { t } = useSite();

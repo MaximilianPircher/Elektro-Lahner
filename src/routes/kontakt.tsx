@@ -3,7 +3,25 @@ import { Clock, EnvelopeSimple, MapPin, Phone } from "@phosphor-icons/react";
 import { useSite } from "../site-shell";
 import { Item, Reveal, Stagger } from "../motion";
 
-export const Route = createFileRoute("/kontakt")({ component: Contact });
+export const Route = createFileRoute("/kontakt")({
+  component: Contact,
+  head: () => ({
+    meta: [
+      { title: "Kontakt | Elektro Lahner" },
+      {
+        name: "description",
+        content:
+          "Elektro Lahner GmbH, Johann-Georg-Mahl-Straße 40/A, 39031 Bruneck. Telefon +39 0474 77 36 36, info@elektro-lahner.com, Mo-Fr 08:30-12:00 und 13:00-17:00.",
+      },
+      { property: "og:title", content: "Kontakt | Elektro Lahner" },
+      {
+        property: "og:description",
+        content:
+          "Elektro Lahner GmbH, Johann-Georg-Mahl-Straße 40/A, 39031 Bruneck. Telefon +39 0474 77 36 36, info@elektro-lahner.com, Mo-Fr 08:30-12:00 und 13:00-17:00.",
+      },
+    ],
+  }),
+});
 
 function Contact() {
   const { lang, t } = useSite();

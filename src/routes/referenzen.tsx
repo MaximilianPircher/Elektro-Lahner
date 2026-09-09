@@ -5,7 +5,25 @@ import { projects, type Sector } from "../projects";
 import { useSite } from "../site-shell";
 import { DrawRule, Item, Reveal, Stagger } from "../motion";
 
-export const Route = createFileRoute("/referenzen")({ component: References });
+export const Route = createFileRoute("/referenzen")({
+  component: References,
+  head: () => ({
+    meta: [
+      { title: "Referenzen | Elektro Lahner" },
+      {
+        name: "description",
+        content:
+          "44 dokumentierte Projekte im Pustertal, Ahrntal und darüber hinaus: Wohnbau, Hotellerie, Gewerbe und Industrie, filterbar nach Branche.",
+      },
+      { property: "og:title", content: "Referenzen | Elektro Lahner" },
+      {
+        property: "og:description",
+        content:
+          "44 dokumentierte Projekte im Pustertal, Ahrntal und darüber hinaus: Wohnbau, Hotellerie, Gewerbe und Industrie, filterbar nach Branche.",
+      },
+    ],
+  }),
+});
 
 const sectorIcons = {
   residential: House,

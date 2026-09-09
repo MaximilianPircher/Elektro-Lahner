@@ -12,11 +12,28 @@ import {
   TreeStructure,
   Wrench,
 } from "@phosphor-icons/react";
+import { content } from "../content";
 import { DayProfile } from "../components/day-profile";
 import { useSite } from "../site-shell";
 import { Item, Reveal, Stagger } from "../motion";
 
-export const Route = createFileRoute("/leistungen/$service")({ component: ServiceDetail });
+export const Route = createFileRoute("/leistungen/$service")({
+  component: ServiceDetail,
+  head: ({ params }) => {
+    // German is what the server renders; the switcher takes over on the client.
+    const service = content.de.services.items.find((item) => item.slug === params.service);
+    if (!service) return {};
+    const title = `${service.title} | Elektro Lahner`;
+    return {
+      meta: [
+        { title },
+        { name: "description", content: service.short },
+        { property: "og:title", content: title },
+        { property: "og:description", content: service.short },
+      ],
+    };
+  },
+});
 
 const icons = [
   Lightning,

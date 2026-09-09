@@ -13,7 +13,25 @@ import {
 import { useSite } from "../site-shell";
 import { DrawRule, Item, Reveal, Stagger, useSpotlight } from "../motion";
 
-export const Route = createFileRoute("/leistungen/")({ component: Services });
+export const Route = createFileRoute("/leistungen/")({
+  component: Services,
+  head: () => ({
+    meta: [
+      { title: "Leistungen | Elektro Lahner" },
+      {
+        name: "description",
+        content:
+          "Elektroinstallation, KNX-Gebäudeautomation, Photovoltaik, Sicherheitstechnik, Infrarot-Messungen, Wartung, Beleuchtung und Medientechnik aus Bruneck.",
+      },
+      { property: "og:title", content: "Leistungen | Elektro Lahner" },
+      {
+        property: "og:description",
+        content:
+          "Elektroinstallation, KNX-Gebäudeautomation, Photovoltaik, Sicherheitstechnik, Infrarot-Messungen, Wartung, Beleuchtung und Medientechnik aus Bruneck.",
+      },
+    ],
+  }),
+});
 
 const icons = [
   Lightning,

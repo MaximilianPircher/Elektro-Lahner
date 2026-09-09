@@ -1833,6 +1833,73 @@ footer {
   box-shadow: 0 0 0 5px rgb(244 196 0 / 0.2);
 }
 
+/* --- team ----------------------------------------------------------------- */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  margin-top: clamp(30px, 4vw, 48px);
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.team-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(22px, 2.4vw, 32px);
+  background: var(--surface);
+}
+.team-card h3 {
+  font-size: var(--fs-h3);
+  font-weight: 540;
+}
+.team-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-3);
+}
+.team-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: auto;
+  padding-top: 12px;
+  font-size: 0.86rem;
+  color: var(--text);
+  transition: color 0.2s;
+}
+.team-card a svg {
+  flex: none;
+  color: var(--text-3);
+}
+.team-card a:hover {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.crew {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(20px, 3vw, 44px);
+  margin-top: clamp(26px, 3.2vw, 40px);
+}
+.crew-group h4 {
+  margin: 0 0 10px;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.crew-group p {
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
 .company-cta {
   display: flex;
   flex-wrap: wrap;
@@ -2237,7 +2304,8 @@ a.contact-tile:hover {
     grid-template-columns: 1fr;
     align-items: start;
   }
-  .value-grid {
+  .value-grid,
+  .team-grid {
     grid-template-columns: repeat(2, 1fr);
   }
   .service-principle {
@@ -2296,6 +2364,8 @@ a.contact-tile:hover {
   .service-overview-grid,
   .contact-grid,
   .value-grid,
+  .team-grid,
+  .crew,
   .service-pagination,
   .service-content ul {
     grid-template-columns: 1fr;

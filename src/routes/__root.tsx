@@ -10,6 +10,53 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { SiteShell } from "../site-shell";
 
+// Structured data for local search. Every value here is the company's own
+// published NAP data. The url points at the domain this site is meant to
+// replace; if it ships anywhere else, that field has to move with it.
+const localBusiness = {
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  name: "Elektro Lahner GmbH",
+  alternateName: "Elektro Lahner S.r.l.",
+  url: "https://www.elektro-lahner.com/",
+  telephone: "+39 0474 773636",
+  email: "info@elektro-lahner.com",
+  vatID: "IT02697740211",
+  foundingDate: "2001",
+  founder: { "@type": "Person", name: "Andreas Lahner" },
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Johann-Georg-Mahl-Straße 40/A",
+    postalCode: "39031",
+    addressLocality: "Bruneck",
+    addressRegion: "BZ",
+    addressCountry: "IT",
+  },
+  areaServed: { "@type": "AdministrativeArea", name: "Südtirol" },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:30",
+      closes: "12:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "13:00",
+      closes: "17:00",
+    },
+  ],
+  knowsAbout: [
+    "Elektroinstallation",
+    "KNX-Gebäudeautomation",
+    "Photovoltaik",
+    "Sicherheitstechnik",
+    "Infrarot-Thermografie",
+    "Beleuchtung",
+  ],
+};
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
@@ -38,6 +85,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         <HeadContent />
       </head>
       <body>
+        {/* Structured data renders in the body: React 19 drops an inline script
+            written into the shell head, and the router's head `scripts` entries
+            do not carry `children` through in this version. Search engines read
+            JSON-LD anywhere in the document. */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusiness) }}
+        />
         {children}
         <Scripts />
       </body>
