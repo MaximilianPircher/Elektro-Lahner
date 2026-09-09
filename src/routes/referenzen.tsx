@@ -1,23 +1,57 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Buildings, Factory, House, Storefront } from "@phosphor-icons/react";
-import { referenceNames } from "../content";
+import { useMemo, useState } from "react";
+import { projects, type Sector } from "../projects";
 import { useSite } from "../site-shell";
 import { DrawRule, Item, Reveal, Stagger } from "../motion";
 
 export const Route = createFileRoute("/referenzen")({ component: References });
 
+const sectorIcons = {
+  residential: House,
+  hospitality: Storefront,
+  commercial: Buildings,
+  industry: Factory,
+};
+
 function References() {
   const { lang, t } = useSite();
   const local = <T,>(de: T, it: T, en: T) => ({ de, it, en })[lang];
-  const sectors = [
-    [House, local("Wohnbau", "Residenziale", "Residential")],
-    [Storefront, local("Hotellerie & Gastronomie", "Hotel e gastronomia", "Hospitality")],
-    [
-      Buildings,
-      local("Gewerbe & Öffentlichkeit", "Commercio e settore pubblico", "Commercial & public"),
-    ],
-    [Factory, local("Industrie", "Industria", "Industrial")],
-  ] as const;
+  const [sector, setSector] = useState<Sector | "all">("all");
+
+  const sectorLabels: Record<Sector, string> = {
+    residential: local("Wohnbau", "Residenziale", "Residential"),
+    hospitality: local("Hotellerie & Gastronomie", "Hotel e gastronomia", "Hospitality"),
+    commercial: local("Gewerbe", "Commercio", "Commercial"),
+    industry: local("Industrie", "Industria", "Industrial"),
+  };
+  const tagLabels = {
+    install: local("Elektroinstallation", "Impianto elettrico", "Electrical installation"),
+    light: local("Beleuchtung", "Illuminazione", "Lighting"),
+    knx: "KNX",
+    pv: local("Photovoltaik", "Fotovoltaico", "Photovoltaics"),
+    fire: local("Brandmeldeanlage", "Rilevazione incendi", "Fire detection"),
+    security: local("Alarm & Video", "Allarme e video", "Alarm & video"),
+  };
+
+  const counts = useMemo(() => {
+    const c = { residential: 0, hospitality: 0, commercial: 0, industry: 0 } as Record<
+      Sector,
+      number
+    >;
+    for (const project of projects) c[project.sector] += 1;
+    return c;
+  }, []);
+
+  const shown =
+    sector === "all" ? projects : projects.filter((project) => project.sector === sector);
+  const filters: (Sector | "all")[] = [
+    "all",
+    "residential",
+    "hospitality",
+    "commercial",
+    "industry",
+  ];
 
   return (
     <main className="inner-page">
@@ -32,44 +66,56 @@ function References() {
         </Reveal>
       </section>
 
-      <Stagger className="sector-strip" step={0.06}>
-        {sectors.map(([Icon, label]) => (
-          <Item key={label} y={12}>
-            <Icon size={22} weight="light" />
-            <span>{label}</span>
-          </Item>
-        ))}
-      </Stagger>
+      <div className="page-pad">
+        <DrawRule />
+      </div>
 
       <section className="section-pad page-pad">
-        <Reveal className="reference-intro">
-          <h2>
-            {local(
-              "Langjährige Partnerschaften und vielfältige Aufgaben.",
-              "Partnership durature e progetti diversi.",
-              "Long-standing partnerships and varied projects.",
-            )}
-          </h2>
-        </Reveal>
-        <Stagger className="project-list" step={0.05}>
-          {referenceNames.map((name) => (
-            <Item className="project-row" key={name} y={16}>
-              <h3>{name}</h3>
-              <ArrowRight size={20} />
+        {/* Filters sit in one row above the list, and every count is real. */}
+        <div
+          className="filter-row"
+          role="group"
+          aria-label={local("Nach Branche filtern", "Filtra per settore", "Filter by sector")}
+        >
+          {filters.map((key) => {
+            const Icon = key === "all" ? null : sectorIcons[key];
+            return (
+              <button
+                key={key}
+                className={`filter ${sector === key ? "filter--on" : ""}`}
+                onClick={() => setSector(key)}
+                aria-pressed={sector === key}
+              >
+                {Icon ? <Icon size={17} weight="light" /> : null}
+                {key === "all" ? local("Alle", "Tutti", "All") : sectorLabels[key]}
+                <em className="mono">{key === "all" ? projects.length : counts[key]}</em>
+              </button>
+            );
+          })}
+        </div>
+
+        <Stagger className="project-list" step={0.015} key={sector}>
+          {shown.map((project) => (
+            <Item className="project-row" key={`${project.name}-${project.place}`} y={12}>
+              <div className="project-main">
+                <h3>{project.name}</h3>
+                <span className="project-place mono">{project.place}</span>
+              </div>
+              <ul className="project-tags">
+                {project.tags.map((tag) => (
+                  <li key={tag}>{tagLabels[tag]}</li>
+                ))}
+              </ul>
             </Item>
           ))}
         </Stagger>
       </section>
 
-      <div className="page-pad">
-        <DrawRule />
-      </div>
-
-      <section className="section-pad page-pad reference-note">
+      <section className="section-pad page-pad reference-note" style={{ paddingTop: 0 }}>
         <Reveal>
           <p>
             {local(
-              "Die gezeigte Auswahl steht für unterschiedliche Projektgrößen und Branchen. Gerne besprechen wir passende Erfahrungen persönlich.",
+              "Die Auswahl steht für unterschiedliche Projektgrößen und Branchen. Gerne besprechen wir passende Erfahrungen persönlich.",
               "La selezione rappresenta diverse dimensioni e settori. Saremo lieti di approfondire personalmente le esperienze pertinenti.",
               "This selection represents different project sizes and sectors. We would be happy to discuss relevant experience personally.",
             )}

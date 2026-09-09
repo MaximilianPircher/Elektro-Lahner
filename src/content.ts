@@ -95,6 +95,11 @@ type Copy = {
     cookiesText: string;
     updated: string;
   };
+  matrix: {
+    title: string;
+    text: string;
+    note: string;
+  };
   profile: {
     title: string;
     text: string;
@@ -380,6 +385,11 @@ export const content: Record<Lang, Copy> = {
         "Diese Website verwendet derzeit keine Analyse-, Marketing- oder Profiling-Cookies. Gespeichert werden nur technisch notwendige Einstellungen für Sprache und Cookie-Hinweis. Sie können die Auswahl jederzeit über „Cookie-Einstellungen“ im Footer ändern.",
       updated: "Stand: September 2026",
     },
+    matrix: {
+      title: "44 dokumentierte Projekte. Jede Spalte ist eines davon.",
+      text: "Vom Bauernhof über Hotellerie und Gewerbe bis zur Industriehalle. Die Matrix zeigt, welche Gewerke in welchem Projekt zusammenkamen, und wie selten eines davon allein auftritt.",
+      note: "Jede Zelle stammt aus der Leistungsbeschreibung des jeweiligen Projekts in unserer Referenzliste.",
+    },
     profile: {
       title: "Ein Gebäude verbraucht nicht dann, wenn die Sonne scheint.",
       text: "Der Ertrag vom Dach hat mittags seine Spitze, der Verbrauch morgens und abends. Gebäudeautomation verschiebt Lasten in die Deckungsfläche, und genau dieser Anteil muss nicht eingekauft werden.",
@@ -656,6 +666,11 @@ export const content: Record<Lang, Copy> = {
         "Il sito non utilizza attualmente cookie di analisi, marketing o profilazione. Salva soltanto le preferenze tecniche per lingua e avviso cookie. La scelta può essere modificata dal footer.",
       updated: "Aggiornato: settembre 2026",
     },
+    matrix: {
+      title: "44 progetti documentati. Ogni colonna è uno di essi.",
+      text: "Dal maso all'hotel, dal negozio al capannone industriale. La matrice mostra quali lavorazioni si sono incontrate in quale progetto, e quanto di rado una compaia da sola.",
+      note: "Ogni cella deriva dalla descrizione delle prestazioni del rispettivo progetto nel nostro elenco di referenze.",
+    },
     profile: {
       title: "Un edificio non consuma quando splende il sole.",
       text: "La resa del tetto ha il picco a mezzogiorno, i consumi la mattina e la sera. L'automazione sposta i carichi nell'area di sovrapposizione, ed è proprio quella quota che non va acquistata.",
@@ -929,6 +944,11 @@ export const content: Record<Lang, Copy> = {
         "The website currently uses no analytics, marketing or profiling cookies. It stores only technical preferences for language and the cookie notice. You can change the choice from the footer.",
       updated: "Updated: September 2026",
     },
+    matrix: {
+      title: "44 documented projects. Every column is one of them.",
+      text: "From farmsteads through hospitality and retail to industrial halls. The matrix shows which trades met on which project, and how rarely any one of them turns up alone.",
+      note: "Every cell comes from the scope description of that project in our reference list.",
+    },
     profile: {
       title: "A building does not draw power when the sun is out.",
       text: "The roof peaks at midday while the building draws in the morning and the evening. Automation shifts loads into the overlap, and that share never has to be bought.",
@@ -954,12 +974,3 @@ export const content: Record<Lang, Copy> = {
     },
   },
 };
-
-export const referenceNames = [
-  "Euroclima AG",
-  "Naturhotel Edelweiss",
-  "Oberwiesen Hotel",
-  "Auto Engl",
-  "Hotel Dolomiti",
-  "Feldmilla Designhotel",
-];

@@ -12,6 +12,7 @@ import {
   TreeStructure,
   Wrench,
 } from "@phosphor-icons/react";
+import { DayProfile } from "../components/day-profile";
 import { useSite } from "../site-shell";
 import { Item, Reveal, Stagger } from "../motion";
 
@@ -27,6 +28,12 @@ const icons = [
   Lightbulb,
   SpeakerHigh,
 ];
+
+// Same rhythm as the overview grid, so a card and its page share a surface.
+const surfaces: Record<number, string> = {
+  1: "service-page-hero--signal",
+  4: "service-page-hero--ink",
+};
 
 function ServiceDetail() {
   const { service: slug } = Route.useParams();
@@ -54,7 +61,12 @@ function ServiceDetail() {
 
   return (
     <main className="inner-page">
-      <section className="service-page-hero page-pad">
+      <section
+        className={`service-page-hero page-pad ${surfaces[index] ?? ""} ${index === 4 ? "on-ink" : ""}`}
+      >
+        <div className="page-watermark" aria-hidden="true">
+          <Icon weight="thin" />
+        </div>
         <nav className="service-page-nav">
           <Link to="/leistungen">
             <ArrowLeft size={15} /> {local("Alle Leistungen", "Tutti i servizi", "All services")}
@@ -70,20 +82,19 @@ function ServiceDetail() {
       </section>
 
       <section className="section-pad page-pad service-page-body">
-        <Reveal className="service-intro">
-          <span className="kicker">{t.services.detailKicker}</span>
-          <h2>
-            {local(
-              "Was wir für Sie umsetzen",
-              "Cosa realizziamo per voi",
-              "What we deliver for you",
-            )}
-          </h2>
+        <Reveal>
+          <p className="service-lead">{service.intro}</p>
         </Reveal>
 
         <div className="service-content">
           <Reveal>
-            <p className="service-lead">{service.intro}</p>
+            <h2>
+              {local(
+                "Was wir für Sie umsetzen",
+                "Cosa realizziamo per voi",
+                "What we deliver for you",
+              )}
+            </h2>
           </Reveal>
           <Stagger as="ul" step={0.07}>
             {service.bullets.map((bullet) => (
@@ -100,6 +111,30 @@ function ServiceDetail() {
           </Reveal>
         </div>
       </section>
+
+      {/* The day profile belongs here rather than on the home page: it is a
+          schematic illustration, and this is the page it actually explains. */}
+      {slug === "photovoltaik" && (
+        <section className="on-ink section-pad">
+          <div className="page-pad profile-block">
+            <Reveal>
+              <h2>{t.profile.title}</h2>
+              <p className="lead">{t.profile.text}</p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <DayProfile
+                labels={{
+                  draw: t.profile.draw,
+                  generation: t.profile.generation,
+                  selfUse: t.profile.selfUse,
+                  axis: t.profile.axis,
+                  note: t.profile.note,
+                }}
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       <nav
         className="service-pagination"

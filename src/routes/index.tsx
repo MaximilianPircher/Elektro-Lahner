@@ -9,10 +9,10 @@ import {
 } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
-import { DayProfile } from "../components/day-profile";
 import { SegmentMeter } from "../components/segment-meter";
 import { KnxBus } from "../components/knx-bus";
-import { referenceNames } from "../content";
+import { ProjectMatrix } from "../components/project-matrix";
+import { marqueeNames } from "../projects";
 import { useSite } from "../site-shell";
 import {
   Counter,
@@ -137,8 +137,8 @@ function Home() {
       <section className="telemetry on-ink">
         <div className="page-pad telemetry-grid">
           <Reveal className="telemetry-copy">
-            <h2>{t.profile.title}</h2>
-            <p className="lead">{t.profile.text}</p>
+            <h2>{t.matrix.title}</h2>
+            <p className="lead">{t.matrix.text}</p>
             <div className="readouts">
               {meters.map((meter, index) => (
                 <SegmentMeter
@@ -156,15 +156,27 @@ function Home() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <DayProfile
-              labels={{
-                draw: t.profile.draw,
-                generation: t.profile.generation,
-                selfUse: t.profile.selfUse,
-                axis: t.profile.axis,
-                note: t.profile.note,
+            <ProjectMatrix
+              rowLabels={{
+                install: local(
+                  "Elektroinstallation",
+                  "Impianto elettrico",
+                  "Electrical installation",
+                ),
+                light: local("Beleuchtung", "Illuminazione", "Lighting"),
+                knx: "KNX",
+                pv: local("Photovoltaik", "Fotovoltaico", "Photovoltaics"),
+                fire: local("Brandmeldeanlage", "Rilevazione incendi", "Fire detection"),
+                security: local("Alarm & Video", "Allarme e video", "Alarm & video"),
+              }}
+              sectorLabels={{
+                residential: local("Wohnbau", "Residenziale", "Residential"),
+                hospitality: local("Hotellerie", "Ospitalità", "Hospitality"),
+                commercial: local("Gewerbe", "Commercio", "Commercial"),
+                industry: local("Industrie", "Industria", "Industrial"),
               }}
             />
+            <p className="matrix-note">{t.matrix.note}</p>
           </Reveal>
         </div>
       </section>
@@ -309,7 +321,7 @@ function Home() {
         >
           {[0, 1].map((copy) => (
             <span key={copy} aria-hidden={copy === 1 ? true : undefined}>
-              {referenceNames.map((name) => (
+              {marqueeNames.map((name) => (
                 <span key={name}>
                   {name} <i />
                 </span>
