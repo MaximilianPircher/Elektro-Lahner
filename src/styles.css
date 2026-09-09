@@ -1216,92 +1216,49 @@ footer {
   margin-top: 18px;
 }
 
-/* --- project matrix: one column per real project, one row per trade ------- */
-.matrix {
-  --lab: clamp(88px, 10vw, 148px);
-  --tot: 26px;
+/* --- how often each trade appears across the documented projects ---------- */
+.bars {
   display: grid;
-  gap: 14px;
+  gap: clamp(14px, 1.8vw, 22px);
   margin: 0;
-  padding: clamp(16px, 2vw, 26px) clamp(14px, 1.8vw, 24px);
+  padding: clamp(20px, 2.4vw, 32px) clamp(18px, 2.2vw, 30px);
   border: 1px solid var(--line-ink);
   border-radius: var(--r-lg);
   background: linear-gradient(160deg, rgb(25 28 25 / 0.9), rgb(13 15 13 / 0.9));
 }
-
-.matrix-bands {
+.bar {
   display: grid;
-  grid-template-columns: var(--lab) minmax(0, 1fr) var(--tot);
-  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 16px;
+  align-items: baseline;
 }
-.matrix-bands > span:first-child {
-  display: none;
+.bar-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--on-ink);
 }
-.matrix-bands {
-  grid-template-columns: var(--lab) minmax(0, 1fr) var(--tot);
-}
-.matrix-bands-inner {
-  grid-column: 2;
-  display: flex;
-  gap: 3px;
-}
-.matrix-bands-inner span {
-  min-width: 0;
-  font-family: "Geist Mono Variable", monospace;
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+.bar-count {
+  font-size: 0.78rem;
   color: var(--on-ink-3);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.matrix-bands-inner i {
+/* There is a real maximum here - the number of projects - so a track states a
+   genuine proportion rather than implying one. */
+.bar-track {
+  grid-column: 1 / -1;
+  height: 10px;
+  border-radius: 2px;
+  background: rgb(246 245 240 / 0.08);
+  overflow: hidden;
+}
+.bar-track i {
   display: block;
-  height: 2px;
-  margin-bottom: 6px;
-  background: var(--line-ink);
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(180deg, #ffd83a, var(--yellow) 62%, #d9ae00);
+  box-shadow: 0 0 12px rgb(244 196 0 / 0.22);
 }
-
-.matrix-rows {
-  display: grid;
-  gap: 4px;
-}
-.matrix-row {
-  display: grid;
-  grid-template-columns: var(--lab) minmax(0, 1fr) var(--tot);
-  gap: 14px;
-  align-items: center;
-}
-.matrix-label {
-  font-size: 0.64rem;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: var(--on-ink-3);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.matrix-cells {
-  display: grid;
-  grid-template-columns: repeat(44, minmax(0, 1fr));
-  gap: 3px;
-}
-.matrix-cells i {
-  aspect-ratio: 1;
-  border-radius: 1px;
-  background: rgb(246 245 240 / 0.09);
-}
-.matrix-cells i.on {
-  background: var(--yellow);
-  box-shadow: 0 0 6px rgb(244 196 0 / 0.35);
-}
-.matrix-total {
-  font-size: 0.72rem;
-  text-align: right;
-  color: var(--on-ink-2);
-}
-.matrix-note {
+.bars-note {
   margin-top: 14px;
   font-family: "Geist Mono Variable", monospace;
   font-size: 0.64rem;

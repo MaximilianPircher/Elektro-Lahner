@@ -386,9 +386,9 @@ export const content: Record<Lang, Copy> = {
       updated: "Stand: September 2026",
     },
     matrix: {
-      title: "44 dokumentierte Projekte. Jede Spalte ist eines davon.",
-      text: "Vom Bauernhof über Hotellerie und Gewerbe bis zur Industriehalle. Die Matrix zeigt, welche Gewerke in welchem Projekt zusammenkamen, und wie selten eines davon allein auftritt.",
-      note: "Jede Zelle stammt aus der Leistungsbeschreibung des jeweiligen Projekts in unserer Referenzliste.",
+      title: "44 dokumentierte Projekte.",
+      text: "Vom Bauernhof über Hotellerie und Gewerbe bis zur Industriehalle. So oft kam jedes Gewerk darin vor, meist mehrere im selben Projekt.",
+      note: "Gezählt aus den Leistungsbeschreibungen unserer Referenzliste.",
     },
     profile: {
       title: "Ein Gebäude verbraucht nicht dann, wenn die Sonne scheint.",
@@ -667,9 +667,9 @@ export const content: Record<Lang, Copy> = {
       updated: "Aggiornato: settembre 2026",
     },
     matrix: {
-      title: "44 progetti documentati. Ogni colonna è uno di essi.",
-      text: "Dal maso all'hotel, dal negozio al capannone industriale. La matrice mostra quali lavorazioni si sono incontrate in quale progetto, e quanto di rado una compaia da sola.",
-      note: "Ogni cella deriva dalla descrizione delle prestazioni del rispettivo progetto nel nostro elenco di referenze.",
+      title: "44 progetti documentati.",
+      text: "Dal maso all'hotel, dal negozio al capannone industriale. Ecco quante volte ricorre ogni lavorazione, spesso più di una nello stesso progetto.",
+      note: "Conteggio dalle descrizioni delle prestazioni del nostro elenco di referenze.",
     },
     profile: {
       title: "Un edificio non consuma quando splende il sole.",
@@ -945,9 +945,9 @@ export const content: Record<Lang, Copy> = {
       updated: "Updated: September 2026",
     },
     matrix: {
-      title: "44 documented projects. Every column is one of them.",
-      text: "From farmsteads through hospitality and retail to industrial halls. The matrix shows which trades met on which project, and how rarely any one of them turns up alone.",
-      note: "Every cell comes from the scope description of that project in our reference list.",
+      title: "44 documented projects.",
+      text: "From farmsteads through hospitality and retail to industrial halls. This is how often each trade appeared, usually several on the same project.",
+      note: "Counted from the scope descriptions on our reference list.",
     },
     profile: {
       title: "A building does not draw power when the sun is out.",

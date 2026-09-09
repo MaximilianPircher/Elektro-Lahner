@@ -11,7 +11,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { useRef } from "react";
 import { SegmentMeter } from "../components/segment-meter";
 import { KnxBus } from "../components/knx-bus";
-import { ProjectMatrix } from "../components/project-matrix";
+import { ProjectBars } from "../components/project-bars";
 import { marqueeNames } from "../projects";
 import { useSite } from "../site-shell";
 import {
@@ -156,8 +156,8 @@ function Home() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <ProjectMatrix
-              rowLabels={{
+            <ProjectBars
+              labels={{
                 install: local(
                   "Elektroinstallation",
                   "Impianto elettrico",
@@ -169,14 +169,11 @@ function Home() {
                 fire: local("Brandmeldeanlage", "Rilevazione incendi", "Fire detection"),
                 security: local("Alarm & Video", "Allarme e video", "Alarm & video"),
               }}
-              sectorLabels={{
-                residential: local("Wohnbau", "Residenziale", "Residential"),
-                hospitality: local("Hotellerie", "Ospitalità", "Hospitality"),
-                commercial: local("Gewerbe", "Commercio", "Commercial"),
-                industry: local("Industrie", "Industria", "Industrial"),
-              }}
+              ofLabel={(count, total) =>
+                local(`${count} von ${total}`, `${count} su ${total}`, `${count} of ${total}`)
+              }
             />
-            <p className="matrix-note">{t.matrix.note}</p>
+            <p className="bars-note">{t.matrix.note}</p>
           </Reveal>
         </div>
       </section>

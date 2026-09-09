@@ -172,8 +172,18 @@ export function Counter({
       onUpdate: (latest) => {
         node.textContent = format(latest);
       },
+      onComplete: () => {
+        node.textContent = format(value);
+      },
     });
-    return () => controls.stop();
+    // The count writes straight to the DOM, so React will not repair it: its
+    // own virtual text never changed and it skips the update. Anything that
+    // interrupts the animation therefore has to leave the final figure behind,
+    // or the page ships a half-counted number.
+    return () => {
+      controls.stop();
+      node.textContent = format(value);
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, value, reduce, locale, decimals]);
 
